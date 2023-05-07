@@ -12,7 +12,7 @@
 在终端中切换到项目目录。
 运行 python read.py 启动项目。
 根据提示输入 TXT 文件路径。
-阅读过程中，可以按 "c" 继续阅读，或按 "q" 退出。
+
 
 
 Project Name: Python-based TXT File Reader with Text-to-Speech (TTS)
@@ -27,4 +27,3 @@ Download the project source code and unzip it.
 Change to the project directory in your terminal.
 Run python read.py to start the project.
 Enter the TXT file path when prompted.
-During the reading process, press "c" to continue reading or "q" to quit.

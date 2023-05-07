@@ -74,14 +74,15 @@ def main():
                         start_line += 1
                         save_progress(progress_file, start_line)
 
-           
-
         audio_queue.put('STOP')
         play_thread.join()
     except KeyboardInterrupt:
         print('\ndetect Ctrl+C，Saving...')
         save_progress(progress_file, start_line)
         print('already Saved')
+    finally:
+        audio_queue.put('STOP')
+        play_thread.join()
 
 if __name__ == "__main__":
     main()
