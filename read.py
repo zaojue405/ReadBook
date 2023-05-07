@@ -3,6 +3,7 @@ import subprocess
 import threading
 import queue
 
+
 def synthesize_audio(text, audio_queue):
     command = f'edge-tts --voice zh-CN-XiaoyiNeural --text "{text}" --write-media book.mp3'
     subprocess.run(command, shell=True, check=True)
@@ -22,7 +23,7 @@ def play_audio(audio_queue, play_lock):
 
 def read_file(file_path, start_line):
     lines = []
-    with open(file_path, 'r', encoding='gbk') as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         for i, line in enumerate(f):
             if i >= start_line:
                 lines.append(line)
