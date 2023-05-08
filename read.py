@@ -8,8 +8,9 @@ voice  en-US-AriaNeural
        zh-CN-XiaoxiaoNeural
 
 """
+voice=' zh-CN-XiaoxiaoNeural'
 def synthesize_audio(text, audio_queue):
-    command = f'edge-tts --voice zh-CN-XiaoxiaoNeural --text "{text}" --write-media book.mp3'
+    command = f'edge-tts --voice  {voice} --text "{text}" --write-media book.mp3'
     subprocess.run(command, shell=True, check=True)
     audio_queue.put('book.mp3')
 
@@ -27,7 +28,10 @@ def play_audio(audio_queue, play_lock):
 
 def read_file(file_path, start_line):
     lines = []
-    with open(file_path, 'r', encoding='gbk') as f:
+    encode ='utf-8'
+    if 'daomubiji' in file_path:
+        encode = 'gbk'
+    with open(file_path, 'r', encoding=encode) as f:
         for i, line in enumerate(f):
             if i >= start_line:
                 lines.append(line)
@@ -57,7 +61,12 @@ def load_progress(progress_file, book_path):
 
 
 def main():
-    file_path = input('请输入TXT文件路径：')
+    #bookshel
+    book=['daomubijixilie_nanpaisanshu.txt','First-They-Killed-My-Father_-A-Daughter-of-Cambodia-Remembers.txt']
+    file_path_index = int(input('请输入列表中的书名索引：'))
+    file_path=book[file_path_index]
+    if 'First-They-Killed-My-Father' in file_path:
+        voice = 'en-US-AriaNeural'
     progress_file = 'progress.txt'
     start_line = load_progress(progress_file, file_path)
 
